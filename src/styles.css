@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.container-main {
+  margin: 10px 10px;
+  padding: 5px auto;
+  text-align: center;
+  border-radius: 50px;
+  background: #e59e24;
+  box-shadow: 5px 5px 3px #9e6d19, -5px -5px 3px #ffcf2f;
+}
+
+.error{
+  background-color: red;
+  color: white;
+}
