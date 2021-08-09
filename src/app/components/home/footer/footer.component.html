@@ -5,19 +5,41 @@
                 <div class="container-box">
                     <h3 class="text-center">COMENTARIOS</h3>
                     <hr>
-                    <input type="email" name="email" placeholder="e-mail" class="form-control mb-2">
-                    <textarea class="form-control mb-2" placeholder="comentario"></textarea>
-                    <hr class="bg-white">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <button class="btn btn-outline-primary">Enviar</button>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-outline-danger">Cancelar</button>
+                    <form [formGroup]="formUserMessage" (ngSubmit)="sendMessage($event)" novalidate>
+                        <input type="email" 
+                               name="email" 
+                               placeholder="e-mail" 
+                               class="form-control mb-2"
+                               formControlName="email">
+                        <div *ngIf="formUserMessage.get('email').errors && formUserMessage.get('email').touched">
+                            <p class="error" *ngIf="formUserMessage.get('email').hasError('required')">
+                                <strong>Debes introducir tu e-mail</strong>
+                            </p>
+                        </div>
+                        <textarea class="form-control mb-2" 
+                                  placeholder="comentario"
+                                  formControlName="message"></textarea>
+                        <div *ngIf="formUserMessage.get('message').errors && formUserMessage.get('message').touched">
+                            <p class="error" *ngIf="formUserMessage.get('message').hasError('required')">
+                                <strong>Escribe un Comentario</strong>
+                            </p>
+                        </div>
+                        <hr class="bg-white">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" 
+                                            class="btn btn-outline-primary"
+                                            [disabled]="formUserMessage.invalid">Enviar</button>
+                                </div>
+                                <div class="col">
+                                    <button type="button" 
+                                            class="btn btn-outline-danger"
+                                            (click)="handleCancel()">Cancelar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="col">
@@ -30,15 +52,12 @@
                     <hr class="bg-white">
                     <h6>Tecnologias</h6>
                     <br>
-                    <img src="../../../../assets/images/icoJava.png" alt="java" class="img-footer" >
-                    <img src="../../../../assets/images/spring.png" alt="java" class="img-footer" >
+                    <img src="../../../../assets/images/icoJava.png" alt="java" class="img-footer">
+                    <img src="../../../../assets/images/spring.png" alt="java" class="img-footer">
                     <img src="../../../../assets/images/angular.png" alt="angular" class="img-footer">
-                    <img src="../../../../assets/images/mysql.png" alt="java" class="img-footer" >
+                    <img src="../../../../assets/images/mysql.png" alt="java" class="img-footer">
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
