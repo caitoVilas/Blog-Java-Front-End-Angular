@@ -2,17 +2,27 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {debounceTime} from 'rxjs/operators'
+import { JwtDto } from 'src/app/models/jwtDto';
+import { LoginUser } from 'src/app/models/loginUser';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AuthService, TokenService]
 })
 export class LoginComponent implements OnInit {
 
   formLogin: FormGroup = new FormGroup({});
+  loginUser: LoginUser;
+  jwtDto: JwtDto;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private tokenService: TokenService) {
     this.buildFormLogin();
    }
 
@@ -27,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.formLogin.valueChanges
     .pipe(debounceTime(500))
     .subscribe(value => {
-      console.log(value)
+      //console.log(value)
     })
   }
 
@@ -35,8 +45,36 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
     if(this.formLogin.valid){
       const values = this.formLogin.value;
-      console.log(values)
+      this.loginUser = new LoginUser(values.userName, values.password);
+
+      this.authService.login(this.loginUser).subscribe(
+        res => {
+          this.jwtDto = new JwtDto(res.jwt, res.userName, res.authorities);
+          console.log(this.jwtDto)
+          this.tokenService.setToken(this.jwtDto.jwt);
+          this.tokenService.setUser(this.jwtDto.userName);
+          this.tokenService.setRoles(this.jwtDto.authorities);
+          Swal.fire({
+            icon: 'success',
+            title: 'Acceso Autorizado',
+            text: `Bienvenido ${this.jwtDto.userName} !!`,
+            showConfirmButton: false,
+            timer: 2500
+          });
+          window.location.href="/";
+        },
+        err => {
+          console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'No Autorizado',
+            text: 'nombre de usuario o contraseña incorrectos',
+            showConfirmButton: false,
+            timer: 2500
+          });
+        }
+      );
     };
   }
-
+ 
 }

@@ -32,14 +32,14 @@ export class TokenService {
   };
 
   public setRoles(roles: string[]): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, JSON.stringify(roles));
+    window.sessionStorage.removeItem(ROLES_KEY);
+    window.sessionStorage.setItem(ROLES_KEY, JSON.stringify(roles));
   };
 
   public getRoles(): String[] {
     this.roles = [];
-    if(sessionStorage.getItem(TOKEN_KEY)){
-     JSON.parse(window.sessionStorage.getItem(TOKEN_KEY)).forEach(auth => {
+    if(sessionStorage.getItem(ROLES_KEY)){
+     JSON.parse(window.sessionStorage.getItem(ROLES_KEY)).forEach(auth => {
        this.roles.push(auth.roles) });
     }
     return this.roles;
