@@ -1,12 +1,12 @@
 
 export class JwtDto{
-    jwt: String;
-    userName: String;
-    roles: String[];
+    jwt: string;
+    userName: string;
+    authorities: string[];
 
-    constructor(jwt: String, userName: String, roles: String[]){
+    constructor(jwt: string, userName: string, authotities: string[]){
         this.jwt = jwt;
         this.userName = userName;
-        this.roles = roles;
+        this.authorities = authotities;
     }
 }
