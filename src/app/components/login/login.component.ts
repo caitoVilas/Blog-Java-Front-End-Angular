@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginUser).subscribe(
         res => {
           this.jwtDto = new JwtDto(res.jwt, res.userName, res.authorities);
-          console.log(this.jwtDto)
           this.tokenService.setToken(this.jwtDto.jwt);
           this.tokenService.setUser(this.jwtDto.userName);
           this.tokenService.setRoles(this.jwtDto.authorities);

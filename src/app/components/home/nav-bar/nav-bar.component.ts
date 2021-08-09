@@ -19,18 +19,14 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.tokenService.getToken())
     if(!this.tokenService.getToken()){
       this.isLogged = false;
     }else{
       this.isLogged = true;
     }
 
-    console.log(this.isLogged)
     this.userName = this.tokenService.getUser()
     this.roles = this.tokenService.getRoles()
-    console.log(this.userName)
-    console.log(this.roles)
   }
 
   public handleLogout(){
