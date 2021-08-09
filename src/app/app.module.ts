@@ -14,6 +14,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { NewArticleComponent } from './components/new-article/new-article.component';
 import { SearchArticleComponent } from './components/search-article/search-article.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {MomentModule} from 'angular2-moment'
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
