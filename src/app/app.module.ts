@@ -15,7 +15,8 @@ import { NewArticleComponent } from './components/new-article/new-article.compon
 import { SearchArticleComponent } from './components/search-article/search-article.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MomentModule} from 'angular2-moment'
+import {MomentModule} from 'angular2-moment';
+import { UserMessagesComponent } from './components/user-messages/user-messages.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MomentModule} from 'angular2-moment'
     AsideComponent,
     BlogComponent,
     NewArticleComponent,
-    SearchArticleComponent
+    SearchArticleComponent,
+    UserMessagesComponent
   ],
   imports: [
     BrowserModule,
