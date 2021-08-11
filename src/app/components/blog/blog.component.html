@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-8 container-main">
+        <div class="col-12 col-md-8 container-main">
             <h3>BLOG</h3>
             <hr>
             <app-loader *ngIf="!articles"></app-loader>
-            <div class="container">
+            <div class="table-responsive">
                 <table class="table table-dark table-striped">
                     <thead>
                         <tr>
@@ -34,7 +34,7 @@
                 </table>
             </div>
         </div>
-        <div class="col container-main">
+        <div class="col-12 col-md-3 container-main">
             <app-aside></app-aside>
         </div>
     </div>
