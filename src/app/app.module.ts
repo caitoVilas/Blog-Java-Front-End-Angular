@@ -16,7 +16,8 @@ import { SearchArticleComponent } from './components/search-article/search-artic
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MomentModule} from 'angular2-moment';
-import { UserMessagesComponent } from './components/user-messages/user-messages.component'
+import { UserMessagesComponent } from './components/user-messages/user-messages.component';
+import { LoaderComponent } from './components/loader/loader.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserMessagesComponent } from './components/user-messages/user-messages.
     BlogComponent,
     NewArticleComponent,
     SearchArticleComponent,
-    UserMessagesComponent
+    UserMessagesComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
