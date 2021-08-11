@@ -1,12 +1,12 @@
 
 export class NewUser{
-    name: String;
-    userName:String;
-    email: String;
-    password: String;
-    roles: String[];
+    name: string;
+    userName:string;
+    email: string;
+    password: string;
+    roles: string;
 
-    constructor(name: String, userName: String, email: String, password: String, roles: String[]){
+    constructor(name: string, userName: string, email: string, password: string, roles: string){
         this.name = name;
         this.userName = userName
         this.email = email;

@@ -2,16 +2,54 @@
     <div class="container">
         <h3>REGISTRO USUARIOS</h3>
         <hr>
-        <form>
-            <input type="text" name="name" placeholder="Nombre" class="form-control mb-2">
-            <input type="text" name="userName" placeholder="Nombre de Usuario" class="form-control mb-2">
-            <input type="email" name="email" placeholder="e-mail" class="form-control mb-2">
-            <input type="password" name="password" placeholder="Contraseña" class="form-control mb-2">
+        <form [formGroup]="formRegister" (ngSubmit)="register($event)" novalidate>
+            <input type="text" 
+                   name="name" 
+                   placeholder="Nombre" 
+                   class="form-control mb-2"
+                   formControlName="name">
+            <div *ngIf="formRegister.get('name').errors && formRegister.get('name').touched">
+                <p class="error" *ngIf="formRegister.get('name').hasError('required')">
+                   <strong>El Nombre es requerido</strong>
+                </p>
+            </div>
+            <input type="text" 
+                   name="userName" 
+                   placeholder="Nombre de Usuario" 
+                   class="form-control mb-2"
+                   formControlName="userName">
+            <div *ngIf="formRegister.get('userName').errors && formRegister.get('userName').touched">
+                <p class="error" *ngIf="formRegister.get('userName').hasError('required')">
+                    <strong>El Nombre de usuario es requerido</strong>
+                </p>
+            </div>
+            <input type="email" 
+                   name="email" 
+                   placeholder="e-mail" 
+                   class="form-control mb-2"
+                   formControlName="email">
+            <div *ngIf="formRegister.get('email').errors && formRegister.get('email').touched">
+                <p class="error" *ngIf="formRegister.get('email').hasError('required')">
+                    <strong>El e-mail es requerido</strong>
+                </p>
+            </div>
+            <input type="password" 
+                   name="password" 
+                   placeholder="Contraseña" 
+                   class="form-control mb-2"
+                   formControlName="password">
+            <div *ngIf="formRegister.get('password').errors && formRegister.get('password').touched">
+                <p class="error" *ngIf="formRegister.get('password').hasError('required')">
+                    <strong>La contraseña es requerida</strong>
+                </p>
+            </div>
             <hr>
-            <div class="container">
+            <div class="container">    
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-outline-success">Regisrar</button>
+                        <button type="submit" 
+                        class="btn btn-outline-success"
+                        [disabled]="formRegister.invalid">Regisrar</button>
                     </div>
                     <div class="col">
                         <button class="btn btn-outline-danger"

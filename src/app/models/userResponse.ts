@@ -2,14 +2,14 @@
 export class UserResponse {
 
     id: number;
-    name: String;
-    userName: String;
-    email: String;
-    roles: String[];
-    imageURL: String;
-    imageID: String;
+    name: string;
+    userName: string;
+    email: string;
+    roles: string[];
+    imageURL: string;
+    imageID: string;
 
-    constructor(id: number, name: String, userName: String, email: String, roles: String[], imageURL:String, imageID: String){
+    constructor(id: number, name: string, userName: string, email: string, roles: string[], imageURL:string, imageID: string){
         this.id = id;
         this.name = name;
         this.userName = userName;
