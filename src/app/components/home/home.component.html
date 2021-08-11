@@ -1,13 +1,13 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-8 container-main">
+    <div class="row gx-5">
+        <div class="col-12 col-md-8 container-main">
             <h3>ULTIMOS ARTICULOS</h3>
             <hr>
             <app-loader *ngIf="!articles"></app-loader>
             <div *ngFor="let article of articles" class="container">
                 <div class="card mb-3 bg-secondary" > 
                     <div class="row g-0 align-items-center">
-                      <div class="col-md-4 align-self-center">
+                      <div class="col-md-4 align-self-center ">
                         <img *ngIf="article.imageURL" src="{{article.imageURL}}" class="img-card" alt="{{ article.title}}">
                         <img *ngIf="!article.imageURL" src="../../../assets/images/default.jpg" class="img-card" alt="{{ article.title}}">
                       </div>
@@ -24,7 +24,8 @@
                   </div>
             </div>
         </div>
-        <div class="col container-main">
+        
+        <div class="col-12 col-md-3 container-main">
             <app-aside></app-aside>
         </div>
     </div>

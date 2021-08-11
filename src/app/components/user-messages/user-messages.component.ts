@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserMessageResponse } from 'src/app/models/userMessageResponse';
+import { TokenService } from 'src/app/services/token.service';
 import { UserMessagesService } from 'src/app/services/user-messages.service';
 import Swal from 'sweetalert2';
 
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
   selector: 'app-user-messages',
   templateUrl: './user-messages.component.html',
   styleUrls: ['./user-messages.component.css'],
-  providers: [UserMessagesService]
+  providers: [UserMessagesService, TokenService]
 })
 export class UserMessagesComponent implements OnInit {
 
@@ -22,7 +23,8 @@ export class UserMessagesComponent implements OnInit {
 
 
 
-  constructor(private userMessageService: UserMessagesService) { }
+  constructor(private userMessageService: UserMessagesService,
+              private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
@@ -48,6 +50,22 @@ export class UserMessagesComponent implements OnInit {
        console.log(this.actualPage)
       },
       err => {
+        if(err.status === 403){
+          Swal.fire({
+            icon: 'error',
+            title: 'El token de seguridad ha caducado',
+            text: 'Debe volver a Autenticarse',
+            showCloseButton: false,
+            showCancelButton: false,
+            confirmButtonColor: 'green',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if(result.isConfirmed){
+              this.tokenService.logout();
+              window.location.href="/login";
+            }
+          });
+        }
         console.log(err)
       }
     );
