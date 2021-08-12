@@ -2,20 +2,41 @@
     <div class="container">
         <h3>NUEVO ARTICULO</h3>
         <hr>
-        <h5>Autor : autor</h5>
+        <p>Autor : <strong>{{user.name}}</strong>  Nombre Usuario : <strong>{{user.userName}}</strong>  e-mail : <strong>{{ user.email}}</strong></p>
         <hr>
-        <form>
-            <label for="title">Tiutulo</label>
-            <input type="text" name="title" class="form-control mb-2">
-            <label for="image">Imagen</label>
-            <input type="file" name="image" class="form-control mb-2">
-            <label for="content">Contenido</label>
-            <textarea name="content" rows="25" class="form-control mb-2"></textarea>
+        <form [formGroup]="frmNewArticle" (ngSubmit)="createArticle($event)" novalidate>
+            <label for="title"><strong>Tiutulo</strong> </label>
+            <input type="text" 
+                   name="title" 
+                   class="form-control mb-2"
+                   formControlName="title">
+            <div *ngIf="frmNewArticle.get('title').errors && frmNewArticle.get('title').touched">
+                <p class="error" *ngIf="frmNewArticle.get('title').hasError('required')">
+                    <strong>El titulo es requerido</strong>
+                </p>
+            </div>
+            <label for="image"><strong>Imagen</strong> </label>
+            <input type="file" 
+                   name="image" 
+                   class="form-control mb-2"
+                   formControlName="image">
+            <label for="content"><strong>Contenido</strong> </label>
+            <textarea name="content" 
+                      rows="25" 
+                      class="form-control mb-2"
+                      formControlName="content"></textarea>
+            <div *ngIf="frmNewArticle.get('content').errors && frmNewArticle.get('content').touched">
+                <p class="error" *ngIf="frmNewArticle.get('content').hasError('required')">
+                    <strong>El Articulo debe tener un contenido</strong>
+                </p>
+            </div>
             <hr>
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-outline-success">Enviar</button>
+                        <button type="submit" 
+                                class="btn btn-outline-success"
+                                [disabled]="frmNewArticle.invalid">Enviar</button>
                     </div>
                     <div class="col">
                         <button class="btn btn-outline-danger" routerLink="/home">Cancelar</button>
