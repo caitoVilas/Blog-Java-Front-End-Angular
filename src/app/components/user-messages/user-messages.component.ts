@@ -35,6 +35,7 @@ export class UserMessagesComponent implements OnInit {
 
   getMessages(page: number) {
     this.pgs = [];
+    window.scroll(0,340);
     this.userMessageService.viewAll(page).subscribe(
       res => {
        console.log(res)

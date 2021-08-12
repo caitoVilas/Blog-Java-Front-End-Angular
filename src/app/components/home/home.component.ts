@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
    
 
-    this.articleService.getArticlesPage().subscribe(
+    this.articleService.getArticlesPage(0, 5, 'id', false).subscribe(
       response =>{
         //console.log(response);
         this.articles = response.content;
