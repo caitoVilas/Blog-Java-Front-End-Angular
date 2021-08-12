@@ -131,7 +131,7 @@ export class NewArticleComponent implements OnInit {
               }
             );
           }
-          
+          this.builderFormNewarticle();
         },
         err => {
           Swal.fire({

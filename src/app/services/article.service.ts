@@ -17,10 +17,10 @@ export class ArticleService {
 
   getArticlesPage(page: number =0, size: number = 10, order: String ='id', asc: boolean = false): Observable<any>{
 
-    return this.httpClient.get(this.articleURL + '/pageable');
+    return this.httpClient.get(this.articleURL + `/pageable?page=${page}&size=${size}&order=${order}&asc=${asc}`);
 
   }
-
+ 
   createArticle(newArticle: NewArticle): Observable<ArticleResponse>{
 
     let token = this.tokenService.getToken();
