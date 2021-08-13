@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -19,7 +20,8 @@ export class BlogComponent implements OnInit {
 
   public articles: Article[] = [];
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -44,6 +46,10 @@ export class BlogComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  goDetails(id: number){
+    this.router.navigate(["article-detail/", id])
   }
 
 }

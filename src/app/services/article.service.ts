@@ -40,4 +40,12 @@ export class ArticleService {
     return this.httpClient.post<ArticleResponse>(this.articleURL + '/up-image', formData, {headers: header});
   }
 
+  getArticle(id: number): Observable<ArticleResponse>{
+
+    let token = this.tokenService.getToken();
+    let header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<ArticleResponse>(this.articleURL + `/${id}`, {headers: header});
+  }
+
 }

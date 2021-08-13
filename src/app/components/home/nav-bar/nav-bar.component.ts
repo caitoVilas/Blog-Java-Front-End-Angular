@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class NavBarComponent implements OnInit {
 
   isLogged: boolean;
+  isAdmin: boolean;
   userName: string;
   roles: String[];
 
@@ -27,6 +28,16 @@ export class NavBarComponent implements OnInit {
 
     this.userName = this.tokenService.getUser()
     this.roles = this.tokenService.getRoles()
+    
+    if(this.roles.includes('ROLE_ADMIN')){
+      this.isAdmin = true;
+    }else{
+      this.isAdmin = false;
+    }
+
+
+    console.log(this.roles)
+    console.log(`admin: ${this.isAdmin}`)
   }
 
   public handleLogout(){

@@ -15,3 +15,23 @@
   color: white;
   text-align: center;
 }
+
+.container-section{
+  border-radius: 50px;
+  background: #e59e24;
+  box-shadow: 5px 5px 3px #9e6d19, -5px -5px 3px #ffcf2f;
+  text-align: center;
+}
+
+.tetx-title{
+  background-color: black;
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.detail-image{
+  width: 90%;
+  height: 10rem;
+  margin-bottom: 1rem;
+}
