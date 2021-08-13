@@ -23,8 +23,8 @@
               {{ userName }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="user-messages">Ver Mensajes</a></li>
-              <li><a class="dropdown-item" href="#">Administrar Usuarios</a></li>
+              <li *ngIf="isAdmin"><a class="dropdown-item" routerLink="user-messages">Ver Mensajes</a></li>
+              <li *ngIf="isAdmin"><a class="dropdown-item" href="#">Administrar Usuarios</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><button class="dropdown-item text-danger" (click)="handleLogout()">Cerrar Session</button></li>
             </ul>

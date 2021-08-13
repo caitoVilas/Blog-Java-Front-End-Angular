@@ -1,0 +1,54 @@
+<div class="container-fluid my-1">
+    <div class="row">
+       <div class="col-12 col-md-8">
+           <div class="container my-2">
+               <div class="container-section my-2">
+                   <h3>DETALLE ARTICULO ID: {{ id }}</h3>
+                   <hr>
+                   <h5 class="tetx-title">TITULO</h5>
+                   <h3>{{ article.title }}</h3>
+                   <div class="container">
+                       <img *ngIf="article.imageURL" 
+                             src="{{ article.imageURL }}" 
+                             alt="{{ article.title }}"
+                             class="detail-image">
+                       <img *ngIf="!article.imageURL" 
+                             src="../../../assets/images/default.jpg" 
+                             alt="{{ article.title }}"
+                             class="detail-image">
+                   </div>
+                   <h5 class="tetx-title">AUTOR</h5>
+                   <h3>{{ article.user.userName }}</h3>
+                   <h5 class="tetx-title">CREADO</h5>
+                   <h3>{{ article.created | amLocale: 'es' | amDateFormat: 'DD/MM/YYYY' }}</h3>
+                   <h5>{{ article.created | amLocale: 'es' | amTimeAgo }}</h5>
+                   <h5 class="tetx-title">CONTENIDO</h5>
+                   <p>{{ article.content }}</p>
+                   <hr>
+                   <div class="row my-1 my-2">
+                   <div class="col-6 col-md-3">
+                       <button class="btn btn-outline-secondary my-2">COMENTAR</button>
+                   </div>
+                   <div class="col-6 col-md-3">
+                       <button class="btn btn-outline-primary my-2">MODIFICAR</button>
+                   </div>
+                   <div class="col-6 col-md-3">
+                       <button class="btn btn-outline-danger my-2">ELIMINAR</button>
+                   </div>
+                   <div class="col-6 col-md-3">
+                       <button class="btn btn-outline-success my-2" routerLink="/">INICIO</button> 
+                   </div>
+                   </div>
+                   
+                </div>
+           </div>
+       </div>
+       <div class="col-12 col-md-4">
+           <div class="container my-2">
+               <div class="container-section">
+                   <app-aside></app-aside>
+               </div>
+           </div>
+       </div>
+    </div>
+</div>

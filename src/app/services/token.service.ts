@@ -40,7 +40,7 @@ export class TokenService {
     this.roles = [];
     if(sessionStorage.getItem(ROLES_KEY)){
      JSON.parse(window.sessionStorage.getItem(ROLES_KEY)).forEach(auth => {
-       this.roles.push(auth.roles) });
+       this.roles.push(auth.authority) });
     }
     return this.roles;
   };

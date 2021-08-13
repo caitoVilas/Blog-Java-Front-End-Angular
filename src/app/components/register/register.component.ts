@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    window.scroll(0,200);
   }
 
   buildFormRegister(){

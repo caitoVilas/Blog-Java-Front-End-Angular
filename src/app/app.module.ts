@@ -17,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MomentModule} from 'angular2-moment';
 import { UserMessagesComponent } from './components/user-messages/user-messages.component';
-import { LoaderComponent } from './components/loader/loader.component'
+import { LoaderComponent } from './components/loader/loader.component';
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoaderComponent } from './components/loader/loader.component'
     NewArticleComponent,
     SearchArticleComponent,
     UserMessagesComponent,
-    LoaderComponent
+    LoaderComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,

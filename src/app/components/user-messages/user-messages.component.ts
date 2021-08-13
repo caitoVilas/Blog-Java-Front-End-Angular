@@ -19,6 +19,8 @@ export class UserMessagesComponent implements OnInit {
   totalPages: number;
   pgs: number[] = [];
   actualPage: number;
+  roles: String[];
+  isAdmin: boolean;
  
 
 
@@ -29,6 +31,23 @@ export class UserMessagesComponent implements OnInit {
   ngOnInit(): void {
 
     this.getMessages(this.page);
+    this.roles = this.tokenService.getRoles();
+    if (this.roles.includes('ROLE_ADMIN')) {
+      this.isAdmin = true;
+    }else{
+      this.isAdmin = false;
+    };
+
+    if (!this.isAdmin) {
+      Swal.fire({
+        icon: 'error',
+        title: 'ACCESO DENEGADO',
+        text: 'Solo Administradores',
+        showCancelButton: false,
+        timer: 3000
+      });
+      window.location.href = "/";
+    }
 
     
   }
