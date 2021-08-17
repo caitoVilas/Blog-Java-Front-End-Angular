@@ -18,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {MomentModule} from 'angular2-moment';
 import { UserMessagesComponent } from './components/user-messages/user-messages.component';
 import { LoaderComponent } from './components/loader/loader.component';
-import { ArticleDetailComponent } from './components/article-detail/article-detail.component'
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { CommetsArticleComponent } from './components/commets-article/commets-article.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ArticleDetailComponent } from './components/article-detail/article-deta
     SearchArticleComponent,
     UserMessagesComponent,
     LoaderComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    CommetsArticleComponent
   ],
   imports: [
     BrowserModule,

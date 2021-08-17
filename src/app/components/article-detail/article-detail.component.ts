@@ -22,7 +22,6 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((p: Params) => {
       this.id = p.id;
-      console.log(this.id)
     });
     this.getArticle(this.id);
     window.scroll(0,300);
