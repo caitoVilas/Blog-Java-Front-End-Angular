@@ -19,7 +19,8 @@ import {MomentModule} from 'angular2-moment';
 import { UserMessagesComponent } from './components/user-messages/user-messages.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
-import { CommetsArticleComponent } from './components/commets-article/commets-article.component'
+import { CommetsArticleComponent } from './components/commets-article/commets-article.component';
+import { NewCommentComponent } from './components/new-comment/new-comment.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CommetsArticleComponent } from './components/commets-article/commets-ar
     UserMessagesComponent,
     LoaderComponent,
     ArticleDetailComponent,
-    CommetsArticleComponent
+    CommetsArticleComponent,
+    NewCommentComponent
   ],
   imports: [
     BrowserModule,

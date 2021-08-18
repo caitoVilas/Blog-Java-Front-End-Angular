@@ -27,13 +27,17 @@
                    <hr>
                    <div class="row my-1 my-2">
                    <div class="col-6 col-md-3">
-                       <button class="btn btn-outline-success my-2">COMENTAR</button>
+                       <button class="btn btn-outline-success my-2"
+                       (click)="goNewComment(article.id)"
+                       [disabled]="!isLogged">COMENTAR</button>
                    </div>
                    <div class="col-6 col-md-3">
-                       <button class="btn btn-outline-success my-2">MODIFICAR</button>
-                   </div>
+                       <button class="btn btn-outline-success my-2"
+                       [disabled]="!authorOrAdmin">MODIFICAR</button>
+                   </div> 
                    <div class="col-6 col-md-3">
-                       <button class="btn btn-outline-danger my-2">ELIMINAR</button>
+                       <button class="btn btn-outline-danger my-2"
+                       [disabled]="!authorOrAdmin">ELIMINAR</button>
                    </div>
                    <div class="col-6 col-md-3">
                        <button class="btn btn-outline-success my-2" routerLink="/">INICIO</button> 
