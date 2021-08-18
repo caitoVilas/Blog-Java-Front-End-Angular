@@ -5,7 +5,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ms-auto">
+          <li *ngIf="isLogged" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="far fa-user-circle"></i> {{ userName }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li *ngIf="isAdmin"><a class="dropdown-item" routerLink="user-messages">Ver Mensajes</a></li>
+              <li *ngIf="isAdmin"><a class="dropdown-item" href="#">Administrar Usuarios</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item text-danger" (click)="handleLogout()">Cerrar Session</button></li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="#">Inicio</a>
           </li>
@@ -18,17 +29,7 @@
           <li *ngIf='!isLogged' class="nav-item">
             <a class="nav-link" routerLink="login">Ingresar</a>
           </li>
-          <li *ngIf="isLogged" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ userName }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li *ngIf="isAdmin"><a class="dropdown-item" routerLink="user-messages">Ver Mensajes</a></li>
-              <li *ngIf="isAdmin"><a class="dropdown-item" href="#">Administrar Usuarios</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><button class="dropdown-item text-danger" (click)="handleLogout()">Cerrar Session</button></li>
-            </ul>
-          </li>
+         
         </ul>
       </div>
     </div>

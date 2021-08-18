@@ -1,0 +1,34 @@
+<div class="container container-main">
+    <div class="container">
+        <h3>COMENTARIO ARTICULO</h3>
+        <hr>
+        <h5 *ngIf="article">Titulo : <strong>{{ article.title}}</strong></h5>
+        <form [formGroup]="frmComment" (ngSubmit)="sendComment($event)">
+            <label for="comment">Comentario</label>
+            <textarea name="comment"
+                      rows="3"
+                      class="form-control"
+                      formControlName="comment">
+            </textarea>
+            <div *ngIf="frmComment.get('comment').errors && frmComment.get('comment').touched">
+                <p class="error" *ngIf="frmComment.get('comment').hasError('required')">
+                    <strong>No has ingresado Contenido</strong>
+                </p>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" 
+                            class="btn btn-outline-success rounded"
+                            [disabled]="frmComment.invalid">Enviar</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-danger rounded"
+                    (click)="goReturn($event)">Cancelar</button>
+                </div>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
+
