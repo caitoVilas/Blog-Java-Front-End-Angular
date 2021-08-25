@@ -37,4 +37,12 @@ export class CommentsService {
 
   return this.httpClient.get<any>(this.commentURL + `/pageable/${id}?page=${page}&size=${size}&order=${order}&asc=${asc}`, {headers: header});
  }
+
+ deleteComment(id: number): Observable<any>{
+
+  let token = this.tokenService.getToken();
+  let header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  return this.httpClient.delete<any>(this.commentURL + `/${id}`, {headers: header});
+ }
 }
