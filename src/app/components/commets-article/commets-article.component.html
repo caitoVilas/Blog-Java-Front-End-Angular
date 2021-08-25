@@ -5,11 +5,20 @@
     <h5 *ngIf='comments.length === 0'>No hay Comentarios</h5><br>
     <div *ngIf='comments'>
     <div *ngFor='let com of comments'>
-        <h5 class="tetx-title mb-0">{{ com.user.userName }}</h5>
-        <p class="text-pr mt-0">{{ com.content }}</p>
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-11">
+                <h5 class="tetx-title mb-0">{{ com.user.userName }}</h5>
+                <p class="text-pr mt-0">{{ com.content }}</p>
+            </div>
+            <div class="col-1 px-1">
+                <button class="btn btn-danger btn-sm btn-rnd" *ngIf="isAdmin" (click)="onDelete(com.id)">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
     </div>
      <!--PAGINACION-->
-     <nav aria-label="Page navigation example">
+     <nav aria-label="Page navigation example" *ngIf="comments.length > 0">
         <ul class="pagination pagination-sm justify-content-center py-1">
             <li class="page-item" [ngClass]="{disabled : isFirst}" (click)="getCommentsPag(id,0)">
                 <a class="page-link" tabindex="-1" aria-label="Previous">
