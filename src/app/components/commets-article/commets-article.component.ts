@@ -15,21 +15,33 @@ export class CommetsArticleComponent implements OnInit {
   comments : Comments[];
   commentsError: string;
   errors: boolean = false;
+  page: number = 0;
+  isFirst: boolean;
+  isLast: boolean;
+  totalPages: number;
+  pgs: number[] = [];
+  actualPage: number;
 
   constructor(private commentsService: CommentsService) { }
 
   ngOnInit(): void {
   
-    this.getComments(this.id);  
+    this.getCommentsPag(this.id, this.page);  
   }
 
-  getComments(id: number){
+  getCommentsPag(id: number, page: number){
 
-    this.commentsService.getComments(id).subscribe(
+    this.commentsService.getCommentsPageable(id, page).subscribe(
       res => {
         this.errors = false;
-        this.comments = res;
-        console.log(this.comments)
+        this.comments = res.content;
+        this.isFirst = res.first;
+        this.isLast = res.last;
+        this.totalPages = res.totalPages;
+        this.actualPage = res.number;
+        for(let i = 0; i < this.totalPages; i++){
+          this.pgs.push(i+1);
+        }
       },
       err => {
         console.log(err)

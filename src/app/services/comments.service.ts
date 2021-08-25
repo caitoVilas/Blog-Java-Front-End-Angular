@@ -29,4 +29,12 @@ export class CommentsService {
 
   return this.httpClient.post<Comments>(this.commentURL, comment, {headers: header});
  }
+
+ getCommentsPageable(id: number, page: number = 0, size: number = 10, order: string = 'id', asc:boolean = false): Observable<any>{
+
+  let token = this.tokenService.getToken();
+  let header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  return this.httpClient.get<any>(this.commentURL + `/pageable/${id}?page=${page}&size=${size}&order=${order}&asc=${asc}`, {headers: header});
+ }
 }
