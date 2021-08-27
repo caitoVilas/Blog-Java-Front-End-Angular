@@ -35,9 +35,6 @@ export class NavBarComponent implements OnInit {
       this.isAdmin = false;
     }
 
-
-    console.log(this.roles)
-    console.log(`admin: ${this.isAdmin}`)
   }
 
   public handleLogout(){

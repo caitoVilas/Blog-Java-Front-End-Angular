@@ -34,8 +34,8 @@
   width: 90%;
   height: 10rem;
   margin-bottom: 1rem;
+  object-fit: fill;
 }
-
 .text-pr {
   background-color: white;
   color: black;
