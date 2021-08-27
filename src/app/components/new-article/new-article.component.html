@@ -2,9 +2,9 @@
     <div class="container">
         <h3>NUEVO ARTICULO</h3>
         <hr>
-        <p>Autor : <strong>{{user.name}}</strong>  Nombre Usuario : <strong>{{user.userName}}</strong>  e-mail : <strong>{{ user.email}}</strong></p>
+        <p *ngIf="user">Autor : <strong>{{user.name}}</strong>  Nombre Usuario : <strong>{{user.userName}}</strong>  e-mail : <strong>{{ user.email}}</strong></p>
         <hr>
-        <form [formGroup]="frmNewArticle" (ngSubmit)="createArticle($event)" novalidate>
+        <form [formGroup]="frmNewArticle" (ngSubmit)="createArticle($event)" novalidate enctype="multipart/form-data">
             <label for="title"><strong>Tiutulo</strong> </label>
             <input type="text" 
                    name="title" 
@@ -19,7 +19,12 @@
             <input type="file" 
                    name="image" 
                    class="form-control mb-2"
-                   formControlName="image">
+                   formControlName="image"
+                   (change)="getImage($event)"
+                   accept="image/png, image/jpg, image/jpeg">
+            <div class="container">
+                <img *ngIf="file" [src]="fileMin" style="width: 100px;" />
+            </div>
             <label for="content"><strong>Contenido</strong> </label>
             <textarea name="content" 
                       rows="25" 

@@ -22,6 +22,8 @@ export class NewArticleComponent implements OnInit {
   newArticle: NewArticle;
   articleResponse: ArticleResponse;
   isImage: boolean;
+  file: File;
+  fileMin: File;
 
   constructor(private userService: UserService,
               private tokenService: TokenService,
@@ -36,6 +38,17 @@ export class NewArticleComponent implements OnInit {
     let userName: string;
     userName =  this.tokenService.getUser();
     this.getUserByUserName(userName);
+    window.scroll(0,340);
+  }
+
+  getImage = (event) => {
+    console.log(event.target.files)
+    this.file = event.target.files[0];
+    const fr = new FileReader();
+    fr.onload = (evento: any) => {
+      this.fileMin = evento.target.result;
+    };
+    fr.readAsDataURL(this.file);
   }
 
   getUserByUserName(userName: string){
@@ -113,12 +126,22 @@ export class NewArticleComponent implements OnInit {
             res.imageID, res.created);
           
           if (this.isImage) {
-            let imageParameter = values.image;
+            
             let idParameter = this.articleResponse.id;
             
-            this.articleService.addImageArticle(imageParameter, idParameter).subscribe(
+            this.articleService.addImageArticle(this.file, idParameter).subscribe(
               res => {
                 console.log(res)
+                this.file = null;
+                this.fileMin = null;
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Articulo guardado !!',
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  timer: 3000
+                });
+                window.location.href="/";
               },
               err => {
                 console.log(err)
