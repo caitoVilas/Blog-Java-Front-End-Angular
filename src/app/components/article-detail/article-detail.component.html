@@ -6,7 +6,7 @@
                    <h3>DETALLE ARTICULO ID: {{ id }}</h3>
                    <hr>
                    <h5 class="tetx-title">TITULO</h5>
-                   <h3>{{ article.title }}</h3>
+                   <h3 *ngIf="article">{{ article.title }}</h3>
                    <div class="container">
                        <img *ngIf="article.imageURL" 
                              src="{{ article.imageURL }}" 
@@ -37,6 +37,7 @@
                    </div> 
                    <div class="col-6 col-md-3">
                        <button class="btn btn-outline-danger my-2"
+                       (click)="deleteArticle(article.id, article.title)"
                        [disabled]="!authorOrAdmin">ELIMINAR</button>
                    </div>
                    <div class="col-6 col-md-3">

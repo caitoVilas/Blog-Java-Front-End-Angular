@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params, RouterLinkActive} from '@angular/router'
+import { debounceTime } from 'rxjs/operators';
 import { ArticleResponse } from 'src/app/models/articleResponse';
 import { ArticleService } from 'src/app/services/article.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -73,6 +74,50 @@ export class ArticleDetailComponent implements OnInit {
 
   goNewComment(id: number){
     this.router.navigate(["article-comment/", id]);
+  }
+
+  deleteArticle(id: number, title: string) {
+    console.log('entro a eliminar')
+    Swal.fire({
+      title: `Eliminar Articulo ${title}`,
+      text: 'Los Articulos eliminados No podran Recuperarse',
+      icon: 'question',
+      showCloseButton: false,
+      showCancelButton: true,
+      confirmButtonColor: 'green',
+      confirmButtonText: `<i class="far fa-thumbs-up"></i>`,
+      confirmButtonAriaLabel: 'ok',
+      cancelButtonColor: 'red',
+      cancelButtonText: `<i class="far fa-thumbs-down"></i>`,
+      cancelButtonAriaLabel: 'no'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.articleService.deleteArticle(id).subscribe(
+          res => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Articulo Elminado !!',
+              showCancelButton: false,
+              showConfirmButton: false,
+              timer: 3000
+            });
+            this.router.navigate(['/']);
+          },
+          err => {
+            Swal.fire({
+              icon: 'error',
+              title: `ERROR: ${err.error.message}`,
+              showConfirmButton: false,
+              showCancelButton: false,
+              timer: 3000
+            });
+            return;
+          }
+        );
+      }else{
+        return;
+      }
+    });
   }
 
 }

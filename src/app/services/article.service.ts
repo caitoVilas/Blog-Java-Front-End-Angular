@@ -48,4 +48,12 @@ export class ArticleService {
     return this.httpClient.get<ArticleResponse>(this.articleURL + `/${id}`, {headers: header});
   }
 
+  deleteArticle(id: number): Observable<any>{
+  
+    let token = this.tokenService.getToken();
+    let header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.delete<any>(this.articleURL + `/${id}`, {headers: header});
+  }
+
 }

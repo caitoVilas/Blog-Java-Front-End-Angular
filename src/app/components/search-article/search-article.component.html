@@ -3,6 +3,9 @@
         <div class="col-8 container-main">
             <h3>RESULTADO DE LA BUSQUEDA</h3>
             <hr>
+            <h3 *ngIf="articles.length === 0">No hay resultados</h3>
+            <hr>
+            <button class="btn btn-success" (click)="goHome()">Inicio</button>
         </div>
         <div class="col container-main">
             <app-aside></app-aside>
