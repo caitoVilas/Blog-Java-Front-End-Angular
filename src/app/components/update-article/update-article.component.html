@@ -1,0 +1,61 @@
+<div class="container container-main">
+    <div class="container">
+        <h3>ACTUALIZAR ARTICULO</h3>
+        <hr>
+        <div class="container" *ngIf="!articleResponse">
+            <app-loader></app-loader>
+        </div>
+        <div class="container" *ngIf="articleResponse">
+            <p>Autor : <strong>{{articleResponse.user.name}}</strong>  Nombre Usuario : <strong>{{articleResponse.user.userName}}</strong>  e-mail : <strong>{{ articleResponse.user.email }}</strong></p>
+            <hr>
+            <form [formGroup]="frmUpdateArticle"  novalidate enctype="multipart/form-data" (ngSubmit)="goUpdateArticle($event)">
+                <label for="title"><strong>Tiutulo</strong> </label>
+                <input type="text" 
+                       name="title" 
+                       class="form-control mb-2"
+                      formControlName="title">
+                <div *ngIf="frmUpdateArticle.get('title').errors && frmUpdateArticle.get('title').touched">
+                        <p class="error" *ngIf="frmUpdateArticle.get('title').hasError('required')">
+                            <strong>El titulo es requerido</strong>
+                        </p>
+                </div>
+                <label for="image"><strong>Imagen</strong> </label>
+                <input type="file" 
+                       name="image" 
+                       class="form-control mb-2"
+                       formControlName="image"
+                       (change)="getImage($event)"
+                       accept="image/png, image/jpg, image/jpeg">
+                <div class="container">
+                    <img *ngIf="articleResponse.imageURL && !file" [src]="articleResponse.imageURL" style="width: 100px;">
+                    <img *ngIf="file" [src]="fileMin" style="width: 100px;" />
+                </div>
+                <label for="content"><strong>Contenido</strong> </label>
+                <textarea name="content" 
+                          rows="25" 
+                          class="form-control mb-2"
+                          formControlName="content">{{articleResponse.content}}</textarea>
+                <div *ngIf="frmUpdateArticle.get('content').errors && frmUpdateArticle.get('content').touched">
+                           <p class="error" *ngIf="frmUpdateArticle.get('content').hasError('required')">
+                               <strong>El Articulo debe tener un contenido</strong>
+                           </p>
+                </div>
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" 
+                                    class="btn btn-outline-success"
+                                    [disabled]="frmUpdateArticle.invalid">Enviar</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-outline-danger" routerLink="/home">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+

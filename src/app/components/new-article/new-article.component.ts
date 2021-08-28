@@ -74,6 +74,7 @@ export class NewArticleComponent implements OnInit {
               window.location.href = 'login'; 
             }else{
               window.location.href = '/';
+              this.tokenService.logout();
             }
           });
         }else {

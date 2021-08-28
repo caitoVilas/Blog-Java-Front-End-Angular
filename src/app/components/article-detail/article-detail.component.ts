@@ -76,6 +76,10 @@ export class ArticleDetailComponent implements OnInit {
     this.router.navigate(["article-comment/", id]);
   }
 
+  goUpdate(id: number){
+    this.router.navigate(['article-update/', id])
+  }
+
   deleteArticle(id: number, title: string) {
     console.log('entro a eliminar')
     Swal.fire({

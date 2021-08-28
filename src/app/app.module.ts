@@ -20,7 +20,8 @@ import { UserMessagesComponent } from './components/user-messages/user-messages.
 import { LoaderComponent } from './components/loader/loader.component';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { CommetsArticleComponent } from './components/commets-article/commets-article.component';
-import { NewCommentComponent } from './components/new-comment/new-comment.component'
+import { NewCommentComponent } from './components/new-comment/new-comment.component';
+import { UpdateArticleComponent } from './components/update-article/update-article.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NewCommentComponent } from './components/new-comment/new-comment.compon
     LoaderComponent,
     ArticleDetailComponent,
     CommetsArticleComponent,
-    NewCommentComponent
+    NewCommentComponent,
+    UpdateArticleComponent
   ],
   imports: [
     BrowserModule,
