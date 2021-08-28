@@ -8,6 +8,7 @@ import { NewArticleComponent } from './components/new-article/new-article.compon
 import { NewCommentComponent } from './components/new-comment/new-comment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchArticleComponent } from './components/search-article/search-article.component';
+import { UpdateArticleComponent } from './components/update-article/update-article.component';
 import { UserMessagesComponent } from './components/user-messages/user-messages.component';
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'new-article', component: NewArticleComponent},
   {path: 'user-messages', component: UserMessagesComponent},
   {path: 'article-detail/:id', component: ArticleDetailComponent},
-  {path: 'article-comment/:id', component: NewCommentComponent}
+  {path: 'article-comment/:id', component: NewCommentComponent},
+  {path: 'article-update/:id', component: UpdateArticleComponent}
 ];
 
 @NgModule({

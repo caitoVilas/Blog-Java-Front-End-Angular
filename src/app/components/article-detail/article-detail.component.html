@@ -7,7 +7,7 @@
                    <hr>
                    <h5 class="tetx-title">TITULO</h5>
                    <h3 *ngIf="article">{{ article.title }}</h3>
-                   <div class="container">
+                   <div *ngIf="article" class="container">
                        <img *ngIf="article.imageURL" 
                              src="{{ article.imageURL }}" 
                              alt="{{ article.title }}"
@@ -18,12 +18,12 @@
                              class="detail-image">
                    </div>
                    <h5 class="tetx-title">AUTOR</h5>
-                   <h3>{{ article.user.userName }}</h3>
+                   <h3 *ngIf="article">{{ article.user.userName }}</h3>
                    <h5 class="tetx-title">CREADO</h5>
-                   <h3>{{ article.created | amLocale: 'es' | amDateFormat: 'DD/MM/YYYY' }}</h3>
-                   <h5>{{ article.created | amLocale: 'es' | amTimeAgo }}</h5>
+                   <h3 *ngIf="article">{{ article.created | amLocale: 'es' | amDateFormat: 'DD/MM/YYYY' }}</h3>
+                   <h5 *ngIf="article">{{ article.created | amLocale: 'es' | amTimeAgo }}</h5>
                    <h5 class="tetx-title">CONTENIDO</h5>
-                   <p>{{ article.content }}</p>
+                   <p *ngIf="article">{{ article.content }}</p>
                    <hr>
                    <div class="row my-1 my-2">
                    <div class="col-6 col-md-3">
@@ -33,6 +33,7 @@
                    </div>
                    <div class="col-6 col-md-3">
                        <button class="btn btn-outline-success my-2"
+                       (click)="goUpdate(article.id)"
                        [disabled]="!authorOrAdmin">MODIFICAR</button>
                    </div> 
                    <div class="col-6 col-md-3">
