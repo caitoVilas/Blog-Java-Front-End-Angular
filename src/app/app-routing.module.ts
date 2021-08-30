@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'blog', component: BlogComponent},
-  {path: 'search', component: SearchArticleComponent},
+  {path: 'search/:search', component: SearchArticleComponent},
   {path: 'new-article', component: NewArticleComponent},
   {path: 'user-messages', component: UserMessagesComponent},
   {path: 'article-detail/:id', component: ArticleDetailComponent},

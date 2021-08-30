@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-aside',
@@ -7,9 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideComponent implements OnInit {
 
-  constructor() { }
+  frmSearch: FormGroup;
+
+  constructor(private formbuilder: FormBuilder,
+              private router: Router) { 
+
+    this.buildFormSearch();
+  }
 
   ngOnInit(): void {
+  }
+
+  buildFormSearch(){
+    this.frmSearch = this.formbuilder.group({
+      search: ['', Validators.required]
+    });
+    this.frmSearch.valueChanges
+    .pipe(debounceTime(500))
+    .subscribe(values =>{
+      //console.log(values);
+    });
+  }
+
+  onSubmit(event: Event){
+    event.preventDefault();
+    if (this.frmSearch.valid) {
+      const values = this.frmSearch.value;
+      console.log(values);
+      this.frmSearch.reset();
+      this.router.navigate(['search/', values.search]);
+    }
   }
 
 }

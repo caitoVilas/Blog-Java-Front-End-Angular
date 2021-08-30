@@ -64,4 +64,12 @@ export class ArticleService {
     return this.httpClient.put<any>(this.articleURL + `/${id}`, newArticle, {headers: header});
   }
 
+  searchArticles(search: string, page:number=0, size: number=10, order: string='id', asc: boolean= false): Observable<any>{
+
+    let token = this.tokenService.getToken();
+    let header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get<any>(this.articleURL + `/search/${search}?page=${page}&size=${size}&order=${order}&asc=${asc}`, {headers: header});
+  }
+
 }
