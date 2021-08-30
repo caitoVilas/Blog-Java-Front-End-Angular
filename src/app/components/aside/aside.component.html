@@ -5,10 +5,17 @@
         <button class="btn btn-outline-secondary" routerLink="/new-article">CREAR ARTICULO</button>
     </div>
     <hr>
-    <input type="text" class="form-control">
+    <form [formGroup]="frmSearch" (ngSubmit)="onSubmit($event)">
+    <input type="text" 
+           class="form-control"
+           name="seach"
+           formControlName="search">
     <div class="d-grid gap-2">
         <br>
-        <button class="btn btn-outline-secondary" routerLink="/search">BUSCAR</button>
+        <button class="btn btn-outline-secondary" 
+                type="submit"
+                [disabled]="frmSearch.invalid">BUSCAR</button>
     </div>
+    </form>
     <br>
 </div>

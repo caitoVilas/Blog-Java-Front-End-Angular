@@ -1,14 +1,65 @@
-<div class="container-fluid">
+<div class="container-fluid my-1">
     <div class="row">
-        <div class="col-8 container-main">
-            <h3>RESULTADO DE LA BUSQUEDA</h3>
-            <hr>
-            <h3 *ngIf="articles.length === 0">No hay resultados</h3>
-            <hr>
-            <button class="btn btn-success" (click)="goHome()">Inicio</button>
-        </div>
-        <div class="col container-main">
-            <app-aside></app-aside>
+        <div class="col-12">
+            <div class="container my-2">
+                <div class="container-section">
+                    <h3>RESULTADO DE LA BUSQUEDA "{{search}}"</h3>
+                    <hr>
+                    <app-loader *ngIf="!articles"></app-loader>
+                    <h3 *ngIf="articles.length === 0">No hay resultados</h3>
+                    <div class="container py-3" *ngFor="let article of articles">
+                        <div class="card bg-secondary">
+                            <div class="row">
+                                <div class="col-4 align-self-center">
+                                    <img *ngIf="article.imageURL" src="{{article.imageURL}}" class="img-card" alt="{{ article.title}}">
+                                    <img *ngIf="!article.imageURL" src="../../../assets/images/default.jpg" class="img-card" alt="{{ article.title}}">
+                                </div>
+                                <div class="col-8 bg-secondary">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{ article.title }}</h5>
+                                      <p class="card-text">{{ article.user.userName }}</p>
+                                      <p class="card-text">{{ article.created | amLocale: 'es' | amTimeAgo }}</p>
+                                      <hr>
+                                      <button class="btn btn-success"
+                                              (click)="goDetails(article.id)">Ver Articulo</button>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                     <!--PAGINACION-->
+                 <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center py-1">
+                        <li class="page-item" [ngClass]="{disabled : isFirst}" (click)="getSearch(search,0)">
+                            <a class="page-link" tabindex="-1" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item" [ngClass]="{disabled : isFirst}">
+                            <a class="page-link" tabindex="-1" aria-label="Previous" (click)="getSearch(search,actualPage -1)">
+                                <span aria-hidden="true">&lt;</span>
+                            </a>
+                        </li>
+                        <li class="page-item" *ngFor="let pg of pgs" [ngClass]="{active: actualPage + 1 === pg}">
+                            <a class="page-link" (click)="getSearch(search, pg -1)">{{ pg }}</a>
+                        </li>
+    
+                        <li class="page-item" [ngClass]="{disabled: isLast}">
+                            <a class="page-link" (click)="getSearch(search, actualPage + 1)">
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </li>
+                        <li class="page-item" [ngClass]="{disabled : isLast}">
+                            <a class="page-link" (click)="getSearch(search ,totalPages -1)">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="btn btn-success my-2" (click)="goHome()">Inicio</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
